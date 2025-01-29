@@ -8,6 +8,10 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.status(200).json("Deploying on vercel");
+})
+
 const userRoute = require("./src/routes/user.route");
 const resourceRoute = require("./src/routes/resource.route");
 
