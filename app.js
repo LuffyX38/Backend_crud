@@ -17,8 +17,14 @@ app.get("/", (req, res) => {
 
 const userRoute = require("./src/routes/user.route");
 const resourceRoute = require("./src/routes/resource.route");
+const asyncHandler = require("./src/utils/asyncHandler");
+const ApiError = require("./src/utils/ApiError");
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/resource", resourceRoute);
+
+app.get("*", asyncHandler((req, res) => {
+    throw new ApiError(404,"No page found")
+}))
 
 module.exports = app;
